@@ -1,0 +1,5 @@
+    @vite(['resources/css/style.css'])
+    @vite(['css/bootstrap.min.css'])
+    @vite(['resources/sass/app.scss'])
+    @vite(['lib/owlcarousel/assets/owl.carousel.min.css'])
+    @vite(['lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css'])

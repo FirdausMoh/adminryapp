@@ -34,7 +34,7 @@ class TransactionController extends Controller
 
     // Lakukan sesuai logika Anda, misalnya update ke database atau Firebase
     // Contoh menggunakan Firebase
-    $this->connect()->getReference('users/' . $id . '/Status')->set($newStatus);
+    $this->connect()->getReference('formData/' . $id . '/Status')->set($newStatus);
 
     return back()->with('success', 'Status berhasil diperbarui');
 }
@@ -42,14 +42,14 @@ class TransactionController extends Controller
 
     public function index()
     {
-        $title = "acount";
+        $title = "form";
        // Mengambil data dari node 'pesanan'
-    $acounts = $this->connect()->getReference('users')->getSnapshot()->getValue();
+    $forms = $this->connect()->getReference('formData')->getSnapshot()->getValue();
 
 
     return view('transaction.index', [
         'title' => $title,
-        'acounts' => $acounts,
+        'forms' => $forms,
 
     ]);
     }

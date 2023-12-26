@@ -6,18 +6,30 @@ use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Kreait\Firebase\Factory;
+
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function connect()
     {
-        $this->middleware('auth');
+        $firebase = (new Factory)
+                    ->withServiceAccount(base_path(env('FIREBASE_CREDENTIALS')))
+                    ->withDatabaseUri(env("FIREBASE_DATABASE_URL"));
+
+        return $firebase->createDatabase();
     }
+
+    public function updateStatus(Request $request, string $id)
+{
+    $newStatus = $request->input('status'); // Ambil status baru dari form
+
+    // Lakukan sesuai logika Anda, misalnya update ke database atau Firebase
+    // Contoh menggunakan Firebase
+    $this->connect()->getReference('formData/' . $id . '/Status')->set($newStatus);
+
+    return back()->with('success', 'Status berhasil diperbarui');
+}
 
     /**
      * Show the application dashboard.
@@ -26,46 +38,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pageTitle = 'Home';
-        $transaction = Transaction::whereMonth('created_at', '=', date('m'))->where('valid', TRUE)->get();
-        $customer_count = Customer::count();
-        $product_count = Product::count();
-        $transaction_count = Transaction::count();
-        $profit = $transaction->sum('sub_total');
-        // $totalTransaction = $transaction->count();
-        $items = Transaction::with([
-            'customer'
-        ])->where('valid', TRUE)->get();
+        $title = "form";
+       // Mengambil data dari node 'pesanan'
+    $forms = $this->connect()->getReference('formData')->getSnapshot()->getValue();
 
 
 
         return view('home', [
-            'items' => $items,
-            'pageTitle' => $pageTitle,
-            'customer_count' => $customer_count,
-            'product_count' => $product_count,
-            'transaction_count' => $transaction_count,
-            'profit' => $this->thousandsCurrencyFormat($profit),
+            'title' => $title,
+        'forms' => $forms,
         ]);
     }
-
-    private function thousandsCurrencyFormat($num) {
-
-        if($num>1000) {
-
-              $x = round($num);
-              $x_number_format = number_format($x);
-              $x_array = explode(',', $x_number_format);
-              $x_parts = array(' Rb', ' Jt', ' M', ' T');
-              $x_count_parts = count($x_array) - 1;
-              $x_display = $x;
-              $x_display = $x_array[0] . ((int) $x_array[1][0] !== 0 ? '.' . $x_array[1][0] : '');
-              $x_display .= $x_parts[$x_count_parts - 1];
-
-              return $x_display;
-
-        }
-
-        return $num;
-}
 }

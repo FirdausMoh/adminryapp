@@ -65,7 +65,7 @@
             </nav>
 
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h4 class="ms-4 mt-4">Manajemen Akun</h4>
+                <h4 class="ms-4 mt-4">Bukti Transfer</h4>
                 <div class="ms-4 mt-4">
                     <ul class="list-inline mb-0 float-end">
                         <li class="list-inline-item">
@@ -96,24 +96,30 @@
                         id="TransactionTable">
                         <thead>
                             <tr class="text-white">
-                                <th class="text-center" scope="col">No</th>
+                                <th scope="col">ID</th>
+                                <th  scope="col">Nama</th>
+                                <th scope="col">Alamat</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">No Telepon</th>
-                                <th scope="col">Status</th>
-
+                                <th scope="col">NO.Tel</th>
+                                <th scope="col">Pesan</th>
+                                <th scope="col">Foto</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($acounts as $id => $pc)
+                            @foreach ($forms as $id => $pc)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $pc['Nama'] }}</td>
+                                    <td>{{ $pc['Alamat'] }}</td>
+                                    <td>{{ $pc['Email'] }}</td>
+                                    <td>{{ $pc['NoTelpon'] }}</td>
+                                    <td>{{ $pc['Pesan'] }}</td>
+                                    <td>
+                                        <img src="{{ $pc['image'] }}" alt="Foto" style="width: 100%; height: 100%;">
+                                    </td>
 
-                                    <td>{{ $pc['nama'] }}</td>
-                                    <td>{{ $pc['email'] }}</td>
-                                    <td>{{ $pc['nohp'] }}</td>
-                                    <td>{{ $pc['status'] }}</td>
+
 
                                 </tr>
                             @endforeach

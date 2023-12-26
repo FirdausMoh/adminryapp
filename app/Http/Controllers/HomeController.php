@@ -26,7 +26,7 @@ class HomeController extends Controller
 
     // Lakukan sesuai logika Anda, misalnya update ke database atau Firebase
     // Contoh menggunakan Firebase
-    $this->connect()->getReference('formData/' . $id . '/Status')->set($newStatus);
+    $this->connect()->getReference('pesanan/' . $id . '/Status')->set($newStatus);
 
     return back()->with('success', 'Status berhasil diperbarui');
 }
@@ -38,15 +38,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $title = "form";
+        $title = "item";
        // Mengambil data dari node 'pesanan'
-    $forms = $this->connect()->getReference('formData')->getSnapshot()->getValue();
+    $items = $this->connect()->getReference('pesanan')->getSnapshot()->getValue();
 
 
 
         return view('home', [
             'title' => $title,
-        'forms' => $forms,
+        'items' => $items,
         ]);
     }
 }

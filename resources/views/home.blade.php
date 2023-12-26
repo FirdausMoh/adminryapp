@@ -97,35 +97,32 @@
              <div class="container-fluid pt-4 px-4">
                 <div class="bg-secondary text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Bukti Transfer</h6>
+                        <h6 class="mb-0">data pembelian</h6>
                         <a href="">Lihat Semua</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-white">
-                                    <th scope="col">ID</th>
-                                    <th  scope="col">Nama</th>
-                                    <th scope="col">Alamat</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">NO.Tel</th>
-                                    <th scope="col">Pesan</th>
-                                    <th scope="col">Foto</th>
-
+                                    <th scope="col">No</th>
+                                    <th  scope="col">Email</th>
+                                    <th scope="col">Nama Produk</th>
+                                    <th scope="col">Jumlah</th>
+                                    <th scope="col">Total Harga</th>
+                                    <th scope="col">Timestamp</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($forms as $id => $pc)
+                                @foreach ($items as $id => $pc)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $pc['Nama'] }}</td>
-                                        <td>{{ $pc['Alamat'] }}</td>
-                                        <td>{{ $pc['Email'] }}</td>
-                                        <td>{{ $pc['NoTelpon'] }}</td>
-                                        <td>{{ $pc['Pesan'] }}</td>
-                                        <td>
-                                            <img src="{{ $pc['image'] }}" alt="Foto" style="width: 100%; height: 100%;">
-                                        </td>
+                                        <td>{{ $pc['userEmail'] }}</td>
+                                        <td>{{ $pc['namaproduct_0'] }}</td>
+                                        <td>{{ $pc['quantity_0'] }}</td>
+                                        <td>{{ $pc['totalHarga'] }}</td>
+                                        <td>{{ $pc['timestamp'] }}</td>
+
+
                                     </tr>
                                 @endforeach
                             </tbody>

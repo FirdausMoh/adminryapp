@@ -78,7 +78,7 @@
 
             {{-- Title + Button  --}}
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h4 class="ms-4 mt-4">Manajemen Pembeli</h4>
+                <h4 class="ms-4 mt-4">Manajemen Akun</h4>
                 <div class="ms-4 mt-4">
                     <ul class="list-inline mb-0 float-end">
                         <li class="list-inline-item">
@@ -109,30 +109,22 @@
                         <table class="table text-start align-middle table-bordered table-hover mb-0 datatable" id="CustomerTable">
                             <thead>
                                 <tr class="text-white">
-                                    <th scope="col">ID</th>
-                                    <th  scope="col">Nama</th>
-                                    <th scope="col">Alamat</th>
+                                    <th class="text-center" scope="col">No</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">NO.Tel</th>
-                                    <th scope="col">Pesan</th>
-                                    <th scope="col">Foto</th>
-
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">No Telepon</th>
+                                    <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($customers as $id => $pc)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $pc['Nama'] }}</td>
-                                        <td>{{ $pc['Alamat'] }}</td>
-                                        <td>{{ $pc['Email'] }}</td>
-                                        <td>{{ $pc['NoTelpon'] }}</td>
-                                        <td>{{ $pc['Pesan'] }}</td>
-                                        <td>
-                                            <img src="{{ $pc['image'] }}" alt="Foto" style="width: 100%; height: 100%;">
-                                        </td>
 
-
+                                        <td>{{ $pc['nama'] }}</td>
+                                        <td>{{ $pc['email'] }}</td>
+                                        <td>{{ $pc['nohp'] }}</td>
+                                        <td>{{ $pc['status'] }}</td>
 
                                     </tr>
                                 @endforeach

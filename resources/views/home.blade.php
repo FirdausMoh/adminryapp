@@ -58,7 +58,7 @@
                             <i class="fa fa-shopping-cart fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2 text-primary">Total Produk</p>
-                                <h6 class="mb-0">{{$product_count}}</h6>
+                                <h6 class="mb-0"></h6>
                             </div>
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                             <i class="fa fa-chart-line fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2 text-primary">Total Penjualan</p>
-                                <h6 class="mb-0">{{$transaction_count}}</h6>
+                                <h6 class="mb-0"></h6>
                             </div>
                         </div>
                     </div>
@@ -76,7 +76,7 @@
                             <i class="fa fa-dollar-sign fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2 text-primary">Total Pendapatan</p>
-                                <h6 class="mb-0">{{$profit}}</h6>
+                                <h6 class="mb-0"></h6>
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                             <i class="fa fa-user-friends fa-3x text-primary"></i>
                             <div class="ms-3">
                                 <p class="mb-2 text-primary">Total Pelanggan</p>
-                                <h6 class="mb-0">{{$customer_count}}</h6>
+                                <h6 class="mb-0"></h6>
                             </div>
                         </div>
                     </div>
@@ -97,36 +97,37 @@
              <div class="container-fluid pt-4 px-4">
                 <div class="bg-secondary text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Penjualan Terbaru</h6>
+                        <h6 class="mb-0">Bukti Transfer</h6>
                         <a href="">Lihat Semua</a>
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-white">
-                                    <th class="text-center" scope="col">No</th>
-                                    <th scope="col">Kode Transaksi</th>
-                                    <th scope="col">Pelanggan</th>
-                                    <th scope="col">Total Harga</th>
-                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">ID</th>
+                                    <th  scope="col">Nama</th>
+                                    <th scope="col">Alamat</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">NO.Tel</th>
+                                    <th scope="col">Pesan</th>
+                                    <th scope="col">Foto</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($items as $index => $item)
+                                @foreach ($forms as $id => $pc)
                                     <tr>
-                                        <td class="text-center">{{ $index + 1 }}</td>
-                                        <td>{{ $item->transaction_code }}</td>
-                                        <td>{{ $item->customer->name }}</td>
-                                        <td>{{ number_format($item->sub_total, 0,',',',') }}</td>
-                                        <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="8" class="text-center">
-                                            Belum ada data transaksi.
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $pc['Nama'] }}</td>
+                                        <td>{{ $pc['Alamat'] }}</td>
+                                        <td>{{ $pc['Email'] }}</td>
+                                        <td>{{ $pc['NoTelpon'] }}</td>
+                                        <td>{{ $pc['Pesan'] }}</td>
+                                        <td>
+                                            <img src="{{ $pc['image'] }}" alt="Foto" style="width: 100%; height: 100%;">
                                         </td>
                                     </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -32,7 +32,8 @@ class CustomerController extends Controller
 
     // Lakukan sesuai logika Anda, misalnya update ke database atau Firebase
     // Contoh menggunakan Firebase
-    $this->connect()->getReference('formData/' . $id . '/Status')->set($newStatus);
+
+    $this->connect()->getReference('users/' . $id . '/Status')->set($newStatus);
 
     return back()->with('success', 'Status berhasil diperbarui');
 }
@@ -41,7 +42,7 @@ class CustomerController extends Controller
     public function index()
     {
         $title = "customer";
-        $customers = $this->connect()->getReference('formData')->getSnapshot()->getValue();
+        $customers = $this->connect()->getReference('users')->getSnapshot()->getValue();
         // confirmDelete();
 
         // $productcategories = ProductCategory::all();

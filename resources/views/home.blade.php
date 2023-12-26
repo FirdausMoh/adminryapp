@@ -117,8 +117,8 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $pc['userEmail'] }}</td>
-                                        <td>{{ $pc['namaproduct_0'] }}</td>
-                                        <td>{{ $pc['quantity_0'] }}</td>
+                                        <td>{{ $pc['namaproduct_0'] . ', ' . $pc['namaproduct_1'] . ',' .$pc['namaproduct_2'] }}</td>
+                                        <td>{{ $pc['quantity_0'] . ', ' . $pc['quantity_1'] . ', ' . $pc['quantity_2']}}</td>
                                         <td>{{ $pc['totalHarga'] }}</td>
                                         <td>{{ $pc['timestamp'] }}</td>
 

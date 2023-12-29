@@ -116,7 +116,7 @@
                                     <td>{{ $pc['NoTelpon'] }}</td>
                                     <td>{{ $pc['Pesan'] }}</td>
                                     <td>
-                                        <img src="{{ $pc['image'] }}" alt="Foto" style="width: 100%; height: 100%;">
+                                        {{-- <img src="{{ $pc['image'] }}" alt="Foto" style="width: 100%; height: 100%;"> --}}
                                     </td>
 
 

@@ -100,28 +100,28 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->connect()->getReference('formData/' . $id)->remove();
+        // $this->connect()->getReference('formData/' . $id)->remove();
 
-        // Alert::success('Sukses Menghapus', 'Sukses Menghapus Pelanggan.');
-        return back();
+        // // Alert::success('Sukses Menghapus', 'Sukses Menghapus Pelanggan.');
+        // return back();
 
     }
 
 
     public function exportExcelCustomer()
     {
-        return Excel::download(new customerExport, 'customer.xlsx',);
+        // return Excel::download(new customerExport, 'customer.xlsx',);
 
-        // return Excel::download(new ProductExport, 'Product.xlsx');
+        // // return Excel::download(new ProductExport, 'Product.xlsx');
     }
 
     public function exportPdfCustomer()
 {
-    $customer = Customer::all();
+    // $customer = Customer::all();
 
-    $pdf = PDF::loadView('customer.export_pdf', compact('customer'));
+    // $pdf = PDF::loadView('customer.export_pdf', compact('customer'));
 
-    return $pdf->download('customer.pdf');
+    // return $pdf->download('customer.pdf');
 }
 
 

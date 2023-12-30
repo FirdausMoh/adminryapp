@@ -32,21 +32,35 @@ class ProductController extends Controller
         return $firebase->createDatabase();
     }
     public function index()
-    {
-        {
-            $pageTitle = 'Product';
-            $Product = $this->connect()->getReference('Product')->getSnapshot()->getValue();
+{
+    $pageTitle = 'Product';
+    $products = $this->connect()->getReference('Product')->getSnapshot()->getValue();
 
-            // confirmDelete();
+    // Mendapatkan URL gambar dari Firebase Storage untuk setiap produk
+    foreach ($products as $productId => $product) {
+        $gambarName = $product['gambar']; // Sesuaikan dengan kunci yang benar
 
-        //    $products = Product::all();
-            return view('Product.index', [
-                'pageTitle' => $pageTitle,
-                'Product' => $Product
-                // 'product' => $products
-            ]);
-        }
+        // Mendapatkan referensi file gambar di Firebase Storage
+        $firebaseStorage = (new Factory)
+            ->withServiceAccount(base_path(env('FIREBASE_CREDENTIALS')))
+            ->createStorage();
+
+        $bucket = $firebaseStorage->getBucket();
+        $imageRef = $bucket->object("images/{$gambarName}.jpg"); // Sesuaikan dengan lokasi penyimpanan gambar
+
+        // Mendapatkan URL download untuk gambar tersebut
+        $downloadUrl = $imageRef->signedUrl(new \DateTime('tomorrow'));
+
+        // Menambahkan URL gambar ke dalam data produk
+        $products[$productId]['gambar_url'] = $downloadUrl;
     }
+
+    return view('Product.index', [
+        'pageTitle' => $pageTitle,
+        'products' => $products
+    ]);
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -145,10 +159,10 @@ class ProductController extends Controller
 
     public function getProduct(Request $request)
 {
-    // $product = Product::select(['product_code', 'image','name','selling_price','purchase_price','stock','category_id'])->get();
-    $product = Product::all();
+    // // $product = Product::select(['product_code', 'image','name','selling_price','purchase_price','stock','category_id'])->get();
+    // $product = Product::all();
 
-    return Response::json($product);
+    // return Response::json($product);
 }
 
 
@@ -157,16 +171,16 @@ class ProductController extends Controller
 
     public function exportExcel()
     {
-    return Excel::download(new ProductExport, 'product.xlsx');
-    }
+    // return Excel::download(new ProductExport, 'product.xlsx');
+    // }
 
-    public function exportPdf()
-    {
-        $product = Product::all();
+    // public function exportPdf()
+    // {
+    //     $product = Product::all();
 
-        $pdf = PDF::loadView('Product.export_pdf', compact('product'));
+    //     $pdf = PDF::loadView('Product.export_pdf', compact('product'));
 
-        return $pdf->download('product.pdf');
+    //     return $pdf->download('product.pdf');
     }
 
 

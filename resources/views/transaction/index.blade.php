@@ -18,22 +18,15 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{{ route('home') }}" class="nav-item nav-link"><i
-                            class="fa fa-tachometer-alt me-2"></i>Dasbor</a>
-                    <a href="{{ route('ProductCategories.index') }}" class="nav-item nav-link"><i
-                            class="fa fa-th-large  me-2"></i>Kategori Prduk</a>
-                    <a href="{{ route('Product.index') }}" class="nav-item nav-link"><i
-                            class="fa fa-shopping-cart me-2"></i>Produk</a>
-                    <a href="{{ route('customer.index') }}" class="nav-item nav-link"><i
-                            class="fa fa-user-friends me-2"></i>Pelanggan</a>
-                    <a href="{{ route('transaction.create', AppHelper::transaction_code()) }}" class="nav-item nav-link"><i
-                            class="fa fa-cash-register me-2"></i>Transaksi</a>
-                    <a href="{{ route('transaction.index') }}" class="nav-item nav-link active"><i
-                            class="fa fa-user me-2"></i>Penjualan</a>
-                    <a href="{{ route('company.index') }}" class="nav-item nav-link"><i
-                            class="fa fa-chart-bar me-2"></i>Profil</a>
+                    <a href="{{route('home')}}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dasbor</a>
+                    <a href="{{route('ProductCategories.index')}}" class="nav-item nav-link"><i class="fa fa-th-large me-2"></i>Kategori Prduk</a>
+                    <a href="{{route('Product.index')}}" class="nav-item nav-link"><i class="fa fa-shopping-cart me-2"></i>Produk</a>
+                    <a href="{{route('customer.index')}}" class="nav-item nav-link"><i class="fa fa-user-friends me-2"></i>Pelanggan</a>
+                    {{-- <a href="{{ route('transaction.create', AppHelper::transaction_code())}}" class="nav-item nav-link"><i class="fa fa-cash-register me-2"></i>Transaksi</a>
+                    <a href="{{route('transaction.index')}}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Penjualan</a> --}}
+                    <a href="{{route('company.index')}}" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Profil</a>
                     <a href="{{ route('logout') }}" class="nav-item nav-link"><i class="fa fa-sign-out-alt me-2"
-                            onclick="event.preventDefault();
+                     onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                         </i>
                         {{ __('Logout') }}
@@ -68,7 +61,7 @@
                 <h4 class="ms-4 mt-4">Bukti Transfer</h4>
                 <div class="ms-4 mt-4">
                     <ul class="list-inline mb-0 float-end">
-                        <li class="list-inline-item">
+                        {{-- <li class="list-inline-item">
                             <a href="{{ route('transaction.exportExcelTransaction') }}" class="btn btn-outline-success">
                                 <i class="bi bi-download me-1"></i> to Excel
                             </a>
@@ -77,7 +70,7 @@
                             <a href="{{ route('transaction.exportPdfTransaction') }}" class="btn btn-outline-danger">
                                 <i class="bi bi-download me-1"></i> to PDF
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="list-inline-item ">|</li>
                         <li class="list-inline-item ">
                             <a href="{{ route('transaction.create', AppHelper::transaction_code()) }}"
@@ -116,7 +109,11 @@
                                     <td>{{ $pc['NoTelpon'] }}</td>
                                     <td>{{ $pc['Pesan'] }}</td>
                                     <td>
-                                        {{-- <img src="{{ $pc['image'] }}" alt="Foto" style="width: 100%; height: 100%;"> --}}
+                                        @if(isset($pc['imageUrl'])) <!-- Pastikan data imageUrl sudah ada -->
+                                            <img src="{{ $pc['imageUrl'] }}" alt="Foto" style="width: 100px; height: 100px;">
+                                        @else
+                                            <p>No Image</p>
+                                        @endif
                                     </td>
 
 

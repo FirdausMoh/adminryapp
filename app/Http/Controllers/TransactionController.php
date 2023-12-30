@@ -21,37 +21,37 @@ class TransactionController extends Controller
 {
     public function connect()
     {
-        $firebase = (new Factory)
-                    ->withServiceAccount(base_path(env('FIREBASE_CREDENTIALS')))
-                    ->withDatabaseUri(env("FIREBASE_DATABASE_URL"));
+//         $firebase = (new Factory)
+//                     ->withServiceAccount(base_path(env('FIREBASE_CREDENTIALS')))
+//                     ->withDatabaseUri(env("FIREBASE_DATABASE_URL"));
 
-        return $firebase->createDatabase();
-    }
+//         return $firebase->createDatabase();
+//     }
 
-    public function updateStatus(Request $request, string $id)
-{
-    $newStatus = $request->input('status'); // Ambil status baru dari form
+//     public function updateStatus(Request $request, string $id)
+// {
+//     $newStatus = $request->input('status'); // Ambil status baru dari form
 
-    // Lakukan sesuai logika Anda, misalnya update ke database atau Firebase
-    // Contoh menggunakan Firebase
-    $this->connect()->getReference('formData/' . $id . '/Status')->set($newStatus);
+//     // Lakukan sesuai logika Anda, misalnya update ke database atau Firebase
+//     // Contoh menggunakan Firebase
+//     $this->connect()->getReference('formData/' . $id . '/Status')->set($newStatus);
 
-    return back()->with('success', 'Status berhasil diperbarui');
+//     return back()->with('success', 'Status berhasil diperbarui');
 }
 
 
     public function index()
     {
-        $title = "form";
-       // Mengambil data dari node 'pesanan'
-    $forms = $this->connect()->getReference('formData')->getSnapshot()->getValue();
+    //     $title = "form";
+    //    // Mengambil data dari node 'pesanan'
+    // $forms = $this->connect()->getReference('formData')->getSnapshot()->getValue();
 
 
-    return view('transaction.index', [
-        'title' => $title,
-        'forms' => $forms,
+    // return view('transaction.index', [
+    //     'title' => $title,
+    //     'forms' => $forms,
 
-    ]);
+    // ]);
     }
 
     /**
@@ -203,18 +203,18 @@ class TransactionController extends Controller
      */
     public function exportPdfTransaction()
     {
-        $items = Transaction::with([
-            'customer'
-        ])->where('valid', TRUE)->get();
+        // $items = Transaction::with([
+        //     'customer'
+        // ])->where('valid', TRUE)->get();
 
-        $pdf = PDF::loadView('transaction.export_pdf', compact('items'));
+        // $pdf = PDF::loadView('transaction.export_pdf', compact('items'));
 
-        return $pdf->download('Report_Transaction.pdf');
+        // return $pdf->download('Report_Transaction.pdf');
     }
 
     public function exportExcelTransaction()
     {
-    return Excel::download(new TransactionExport, 'Report_Transaksi.xlsx');
+    // return Excel::download(new TransactionExport, 'Report_Transaksi.xlsx');
     }
 
 }

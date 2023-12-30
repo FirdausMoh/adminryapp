@@ -14,8 +14,8 @@
                     <a href="{{route('ProductCategories.index')}}" class="nav-item nav-link"><i class="fa fa-th-large me-2"></i>Kategori Prduk</a>
                     <a href="{{route('Product.index')}}" class="nav-item nav-link"><i class="fa fa-shopping-cart me-2"></i>Produk</a>
                     <a href="{{route('customer.index')}}" class="nav-item nav-link"><i class="fa fa-user-friends me-2"></i>Pelanggan</a>
-                    <a href="{{ route('transaction.create', AppHelper::transaction_code())}}" class="nav-item nav-link"><i class="fa fa-cash-register me-2"></i>Transaksi</a>
-                    <a href="{{route('transaction.index')}}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Penjualan</a>
+                    {{-- <a href="{{ route('transaction.create', AppHelper::transaction_code())}}" class="nav-item nav-link"><i class="fa fa-cash-register me-2"></i>Transaksi</a>
+                    <a href="{{route('transaction.index')}}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Penjualan</a> --}}
                     <a href="{{route('company.index')}}" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Profil</a>
                     <a href="{{ route('logout') }}" class="nav-item nav-link"><i class="fa fa-sign-out-alt me-2"
                      onclick="event.preventDefault();
@@ -105,22 +105,55 @@
                             <thead>
                                 <tr class="text-white">
                                     <th scope="col">No</th>
+                                    <th  scope="col">Nama</th>
                                     <th  scope="col">Email</th>
+                                    <th  scope="col">Alamat</th>
+                                    <th  scope="col">Pesan</th>
                                     <th scope="col">Nama Produk</th>
                                     <th scope="col">Jumlah</th>
                                     <th scope="col">Total Harga</th>
                                     <th scope="col">Timestamp</th>
+                                    <th scope="col">Foto Bukti Transfer</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($items as $id => $pc)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $pc['Nama'] }}</td>
                                         <td>{{ $pc['userEmail'] }}</td>
-                                        <td>{{ $pc['namaproduct_0'] . ', ' . $pc['namaproduct_1'] . ',' .$pc['namaproduct_2'] }}</td>
-                                        <td>{{ $pc['quantity_0'] . ', ' . $pc['quantity_1'] . ', ' . $pc['quantity_2']}}</td>
+                                        <td>{{ $pc['Alamat'] }}</td>
+                                        <td>{{ $pc['Pesan'] }}</td>
+                                        <td>
+                                            @for ($i = 0; $i < count($pc); $i++)
+                                                @if (isset($pc['namaproduct_' . $i]))
+                                                    {{ $pc['namaproduct_' . $i] }}
+                                                    @if ($i < count($pc) - 1)
+
+                                                    ,
+                                                    @endif
+                                                @endif
+                                            @endfor
+                                        </td>
+                                        <td>
+                                            @for ($i = 0; $i < count($pc); $i++)
+                                                @if (isset($pc['quantity_' . $i]))
+                                                    {{ $pc['quantity_' . $i] }}
+                                                    @if ($i < count($pc) - 1)
+                                                        ,
+                                                    @endif
+                                                @endif
+                                            @endfor
+                                        </td>
                                         <td>{{ $pc['totalHarga'] }}</td>
                                         <td>{{ $pc['timestamp'] }}</td>
+                                        <td>
+                                            @if(isset($pc['imageUrl'])) <!-- Pastikan data imageUrl sudah ada -->
+                                                <img src="{{ $pc['imageUrl'] }}" alt="Foto" style="width: 100px; height: 100px;">
+                                            @else
+                                                <p>No Image</p>
+                                            @endif
+                                        </td>
 
 
                                     </tr>

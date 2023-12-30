@@ -11,22 +11,15 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{{ route('home') }}" class="nav-item nav-link"><i
-                            class="fa fa-tachometer-alt me-2"></i>Dasbor</a>
-                    <a href="{{ route('ProductCategories.index') }}" class="nav-item nav-link"><i
-                            class="fa fa-th-large me-2"></i>Kategori Prduk</a>
-                    <a href="{{ route('Product.index') }}" class="nav-item nav-link active"><i
-                            class="fa fa-shopping-cart me-2"></i>Produk</a>
-                    <a href="{{ route('customer.index') }}" class="nav-item nav-link"><i
-                            class="fa fa-user-friends me-2"></i>Pelanggan</a>
-                    <a href="{{ route('transaction.create', AppHelper::transaction_code()) }}" class="nav-item nav-link"><i
-                            class="fa fa-cash-register me-2"></i>Transaksi</a>
-                    <a href="{{ route('transaction.index') }}" class="nav-item nav-link"><i
-                            class="fa fa-chart-bar me-2"></i>Penjualan</a>
-                    <a href="{{ route('company.index') }}" class="nav-item nav-link"><i
-                            class="fa fa-user me-2"></i>Profil</a>
+                    <a href="{{route('home')}}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dasbor</a>
+                    <a href="{{route('ProductCategories.index')}}" class="nav-item nav-link"><i class="fa fa-th-large me-2"></i>Kategori Prduk</a>
+                    <a href="{{route('Product.index')}}" class="nav-item nav-link active"><i class="fa fa-shopping-cart me-2"></i>Produk</a>
+                    <a href="{{route('customer.index')}}" class="nav-item nav-link"><i class="fa fa-user-friends me-2"></i>Pelanggan</a>
+                    {{-- <a href="{{ route('transaction.create', AppHelper::transaction_code())}}" class="nav-item nav-link"><i class="fa fa-cash-register me-2"></i>Transaksi</a>
+                    <a href="{{route('transaction.index')}}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Penjualan</a> --}}
+                    <a href="{{route('company.index')}}" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Profil</a>
                     <a href="{{ route('logout') }}" class="nav-item nav-link"><i class="fa fa-sign-out-alt me-2"
-                            onclick="event.preventDefault();
+                     onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                         </i>
                         {{ __('Logout') }}
@@ -62,7 +55,7 @@
                 <h4 class="ms-4 mt-4">Manajemen Produk</h4>
                 <div class="ms-4 mt-4">
                     <ul class="list-inline mb-0 float-end">
-                        <li class="list-inline-item">
+                        {{-- <li class="list-inline-item">
                             <a href="{{ route('Product.exportexcel') }}" class="btn btn-outline-success">
                                 <i class="bi bi-download me-1"></i> to Excel
                             </a>
@@ -71,7 +64,7 @@
                             <a href="{{ route('Product.exportPdf') }}" class="btn btn-outline-danger">
                                 <i class="bi bi-download me-1"></i> to PDF
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="list-inline-item">|</li>
                         <li class="list-inline-item">
                             <a href="{{ route('Product.create') }}" class="me-4 btn btn-success">
@@ -101,26 +94,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($Product as $id => $pc)
+                                @foreach ($products as $productId => $product)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td></td>
-                                        <td>{{ $pc['product_code'] }}</td>
-                                        <td>{{ $pc['kategoriproduct'] }}</td>
-                                        <td>{{ $pc['namaproduct'] }}</td>
-                                        <td>{{ $pc['harga'] }}</td>
-                                        <td>{{ $pc['deskripsiproduct'] }}</td>
                                         <td>
-                                            <form action="{{ route('Product.destroy', ['Product' => $id]) }}"
-                                                method="POST">
+                                            @if ($product['gambar_url'])
+                                                <img src="{{ $product['gambar_url'] }}" alt="Gambar Produk" width="100px">
+                                            @else
+                                                <img src="{{ asset('path/to/default/image.jpg') }}" alt="Gambar Default">
+                                            @endif
+                                        </td>
+                                        <td>{{ $product['product_code'] }}</td>
+                                        <td>{{ $product['kategoriproduct'] }}</td>
+                                        <td>{{ $product['namaproduct'] }}</td>
+                                        <td>{{ $product['harga'] }}</td>
+                                        <td>{{ $product['deskripsiproduct'] }}</td>
+                                        <td>
+                                            <form action="{{ route('Product.destroy', ['Product' => $productId]) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
-                                                {{-- <a class="btn btn-sm btn-primary" href="{{ route('ProductCategories.show', ['ProductCategory' => $id]) }}"><i
-                                                        class="bi bi-card-heading"></i></a>
-                                                <a class="btn btn-sm btn-success" href="{{ route('ProductCategories.edit', ['ProductCategory' => $id]) }}"><i
-                                                        class="bi bi-pencil-square"></i></a> --}}
-                                                <button type="submit" class="btn btn-sm btn-danger btn-delete"
-                                                    data-name="">
+                                                <button type="submit" class="btn btn-sm btn-danger btn-delete" data-name="">
                                                     <i class="bi-trash"></i>
                                                 </button>
                                             </form>

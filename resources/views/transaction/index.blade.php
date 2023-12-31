@@ -10,11 +10,10 @@
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
-            <nav class="navbar bg-secondary navbar-dark">
+            <nav class="navbar bg-navbar-">
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="" src="{{ Vite::asset('resources/images/LOGO.png') }}" alt=""
-                            style="width: 180px; height: 130px;">
+                        <img class="" src="{{ Vite::asset('resources/images/JAAA.png') }}" alt="" style="width: 210px; height: 190px;">
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
@@ -24,7 +23,6 @@
                     <a href="{{route('customer.index')}}" class="nav-item nav-link"><i class="fa fa-user-friends me-2"></i>Daftar Pelanggan</a>
                     {{-- <a href="{{ route('transaction.create', AppHelper::transaction_code())}}" class="nav-item nav-link"><i class="fa fa-cash-register me-2"></i>Transaksi</a> --}}
                     <a href="{{route('transaction.index')}}" class="nav-item nav-link active"><i class="fa fa-chart-bar me-2"></i>Data Pembayaran</a>
-                    <a href="{{route('company.index')}}" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Profil</a>
                     <a href="{{ route('logout') }}" class="nav-item nav-link"><i class="fa fa-sign-out-alt me-2"
                      onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
@@ -40,7 +38,7 @@
         <!-- Sidebar End -->
 
         <div class="content">
-            <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+            <nav class="navbar navbar-expand bg- navbar-sticky-top px-4 py-0" style="background-color: #01807e">
                 <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
                     <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
                 </a>
@@ -58,7 +56,7 @@
             </nav>
 
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h4 class="ms-4 mt-4">Bukti Transfer</h4>
+                <h2 class="ms-4 mt-4 text-dark">Bukti Transfer</h2>
                 {{-- <div class="ms-4 mt-4">
                     <ul class="list-inline mb-0 float-end">
                         <li class="list-inline-item">
@@ -84,10 +82,10 @@
 
             <div class="container-fluid pt-4 px-4">
 
-                <div class="bg-secondary justify-content-between rounded p-4">
+                <div class="bg- justify-content-between rounded p-4" style="background-color: #ededed">
                     <table class="table text-start align-middle table-bordered table-hover mb-0">
                         <thead>
-                            <tr class="text-white">
+                            <tr class="text-dark">
                                 <th scope="col">No</th>
                                 <th scope="col">Timestamp</th>
                                 <th  scope="col">Nama</th>
@@ -102,7 +100,7 @@
                         </thead>
                         <tbody>
                             @foreach ($payments as $id => $pc)
-                                <tr>
+                                <tr class="text-dark">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $pc['timestamp'] }}</td>
                                     <td>{{ $pc['Nama'] }}</td>
@@ -145,6 +143,73 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+                <div id="imageModal" class="modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="modalImage">
+                    <style>
+                        /* Style untuk modal */
+                        .modal {
+                            display: none;
+                            position: fixed;
+                            z-index: 1000;
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            overflow: auto;
+                            background-color: rgba(0,0,0,0.9);
+                        }
+                    
+                        .modal-content {
+                            margin: auto;
+                            display: block;
+                            max-width: 90%;
+                            max-height: 90%;
+                        }
+                    
+                        .close {
+                            position: absolute;
+                            top: 15px;
+                            right: 35px;
+                            color: #fff;
+                            font-size: 40px;
+                            font-weight: bold;
+                            transition: 0.3s;
+                        }
+                    
+                        .close:hover,
+                        .close:focus {
+                            color: #bbb;
+                            text-decoration: none;
+                            cursor: pointer;
+                        }
+                    </style>
+                    <script>
+                        // Get the modal
+                        var modal = document.getElementById('imageModal');
+                    
+                        // Get the image and insert it inside the modal - use its "alt" text as a caption
+                        var modalImg = document.getElementById("modalImage");
+                        
+                        // Loop through each image in the table
+                        var images = document.querySelectorAll('img[src]');
+                        images.forEach(function(imgElement) {
+                            imgElement.onclick = function() {
+                                modal.style.display = "block";
+                                modalImg.src = this.src;
+                            }
+                        });
+                    
+                        // Get the <span> element that closes the modal
+                        var span = document.getElementsByClassName("close")[0];
+                    
+                        // When the user clicks on <span> (x), close the modal
+                        span.onclick = function() {
+                            modal.style.display = "none";
+                        }
+                    </script>
+                    
                 </div>
             </div>
         </div>

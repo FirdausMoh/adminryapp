@@ -5,10 +5,10 @@
     <div class="container-fluid position-relative d-flex p-0">
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
-            <nav class="navbar bg-secondary navbar-dark">
+            <nav class="navbar bg-navbar-">
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
-                        <img class="" src="{{ Vite::asset('resources/images/LOGO.png') }}" alt="" style="width: 180px; height: 130px;">
+                        <img class="" src="{{ Vite::asset('resources/images/JAAA.png') }}" alt="" style="width: 210px; height: 190px;">
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
@@ -18,7 +18,6 @@
                     <a href="{{route('customer.index')}}" class="nav-item nav-link"><i class="fa fa-user-friends me-2"></i>Daftar Pelanggan</a>
                     {{-- <a href="{{ route('transaction.create', AppHelper::transaction_code())}}" class="nav-item nav-link"><i class="fa fa-cash-register me-2"></i>Transaksi</a> --}}
                     <a href="{{route('transaction.index')}}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Data Pembayaran</a>
-                    <a href="{{route('company.index')}}" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Profil</a>
                     <a href="{{ route('logout') }}" class="nav-item nav-link"><i class="fa fa-sign-out-alt me-2"
                      onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
@@ -35,7 +34,7 @@
 
 
         <div class="content">
-            <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+            <nav class="navbar navbar-expand bg- navbar- sticky-top px-4 py-0" style="background-color: #01807e">
                 <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
                     <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
                 </a>
@@ -53,7 +52,7 @@
             </nav>
 
                     <div class="d-flex align-items-center justify-content-between m-4">
-                        <h4 class="ms-4 mt-4">Manajemen Kategori Produk</h4>
+                        <h3 class="ms-4 mt-4" style="color: black">Manajemen Kategori Produk</h3>
                         <div class="ms-4 mt-4">
                             <ul class="list-inline mb-0 float-end">
                                 <li class="list-inline-item">
@@ -66,12 +65,12 @@
                     </div>
 
                         <!-- Recent Sales Start -->
-                        <div class="container-fluid pt-2 px-4">
-                            <div class="bg-secondary justify-content-between rounded p-3">
+                        <div class="container-fluid pt-2 px-4" >
+                            <div style="background-color: #ededed" class="bg- justify-content-between rounded p-3">
                                 <div class="table-responsive">
                                     <table class="table text-start align-middle table-bordered table-hover mb-0 datatable" id="ProductCategoryTable">
                                         <thead>
-                                            <tr class="text-white">
+                                            <tr class="text-dark">
                                                 <th scope="col" style="width: 10%;">ID</th>
                                                 <th scope="col" style="width: 80%;">Kategori Produk</th>
                                                 <th scope="col" style="width: 10%;">AKSI</th>
@@ -80,8 +79,8 @@
                                         <tbody>
                                             {{-- tampil data --}}
                                             @foreach($productcategories as $id => $pc)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
+                                            <tr style="color: rgb(0, 0, 0)">
+                                                <td >{{ $loop->iteration }}</td>
                                                 <td>{{ $pc['namakategori'] }}</td>
 
                                                 <td>

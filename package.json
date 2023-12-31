@@ -22,6 +22,7 @@
         "datatables.net-bs5": "^1.13.6",
         "datatables.net-buttons-bs5": "^2.4.1",
         "datatables.net-dt": "^1.13.6",
+        "firebase": "^10.7.1",
         "jquery": "^3.7.0"
     }
 }

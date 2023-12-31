@@ -21,37 +21,37 @@ class TransactionController extends Controller
 {
     public function connect()
     {
-//         $firebase = (new Factory)
-//                     ->withServiceAccount(base_path(env('FIREBASE_CREDENTIALS')))
-//                     ->withDatabaseUri(env("FIREBASE_DATABASE_URL"));
+        $firebase = (new Factory)
+                    ->withServiceAccount(base_path(env('FIREBASE_CREDENTIALS')))
+                    ->withDatabaseUri(env("FIREBASE_DATABASE_URL"));
 
-//         return $firebase->createDatabase();
-//     }
+        return $firebase->createDatabase();
+    }
 
-//     public function updateStatus(Request $request, string $id)
-// {
-//     $newStatus = $request->input('status'); // Ambil status baru dari form
+    public function updateStatus(Request $request, string $id)
+{
+    $newStatus = $request->input('status'); // Ambil status baru dari form
 
-//     // Lakukan sesuai logika Anda, misalnya update ke database atau Firebase
-//     // Contoh menggunakan Firebase
-//     $this->connect()->getReference('formData/' . $id . '/Status')->set($newStatus);
+    // Lakukan sesuai logika Anda, misalnya update ke database atau Firebase
+    // Contoh menggunakan Firebase
+    $this->connect()->getReference('pesanan/' . $id . '/Status')->set($newStatus);
 
-//     return back()->with('success', 'Status berhasil diperbarui');
+    return back()->with('success', 'Status berhasil diperbarui');
 }
 
 
     public function index()
     {
-    //     $title = "form";
-    //    // Mengambil data dari node 'pesanan'
-    // $forms = $this->connect()->getReference('formData')->getSnapshot()->getValue();
+        $title = "payment";
+       // Mengambil data dari node 'pesanan'
+    $payments = $this->connect()->getReference('pesanan')->getSnapshot()->getValue();
 
 
-    // return view('transaction.index', [
-    //     'title' => $title,
-    //     'forms' => $forms,
+    return view('transaction.index', [
+        'title' => $title,
+        'payments' => $payments,
 
-    // ]);
+    ]);
     }
 
     /**

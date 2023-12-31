@@ -10,12 +10,11 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="{{route('home')}}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dasbor</a>
-                    <a href="{{route('ProductCategories.index')}}" class="nav-item nav-link"><i class="fa fa-th-large me-2"></i>Kategori Prduk</a>
-                    <a href="{{route('Product.index')}}" class="nav-item nav-link"><i class="fa fa-shopping-cart me-2"></i>Produk</a>
-                    <a href="{{route('customer.index')}}" class="nav-item nav-link"><i class="fa fa-user-friends me-2"></i>Pelanggan</a>
-                    {{-- <a href="{{ route('transaction.create', AppHelper::transaction_code())}}" class="nav-item nav-link"><i class="fa fa-cash-register me-2"></i>Transaksi</a>
-                    <a href="{{route('transaction.index')}}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Penjualan</a> --}}
+                    <a href="{{route('home')}}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Data Pemesanan</a>
+                    <a href="{{route('ProductCategories.index')}}" class="nav-item nav-link"><i class="fa fa-th-large me-2"></i>Kategori Produk</a>
+                    <a href="{{route('Product.index')}}" class="nav-item nav-link"><i class="fa fa-shopping-cart me-2"></i>Daftar Produk</a>
+                    <a href="{{route('customer.index')}}" class="nav-item nav-link"><i class="fa fa-user-friends me-2"></i>Daftar Pelanggan</a>
+                    <a href="{{route('transaction.index')}}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Data Pembayaran</a>
                     <a href="{{route('company.index')}}" class="nav-item nav-link"><i class="fa fa-user me-2"></i>Profil</a>
                     <a href="{{ route('logout') }}" class="nav-item nav-link"><i class="fa fa-sign-out-alt me-2"
                      onclick="event.preventDefault();
@@ -31,7 +30,6 @@
         </div>
 
         <!-- Sidebar End -->
-
 
         <div class="content">
             <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
@@ -50,79 +48,32 @@
                     </div>
                 </div>
             </nav>
-            <!-- Sale & Revenue Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-secondary rounded d-flex align-items-center p-4">
-                            <i class="fa fa-shopping-cart fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2 text-primary">Total Produk</p>
-                                <h6 class="mb-0"></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-secondary rounded d-flex align-items-center p-4">
-                            <i class="fa fa-chart-line fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2 text-primary">Total Penjualan</p>
-                                <h6 class="mb-0"></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-secondary rounded d-flex align-items-center p-4">
-                            <i class="fa fa-dollar-sign fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2 text-primary">Total Pendapatan</p>
-                                <h6 class="mb-0"></h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-secondary rounded d-flex align-items-center p-4">
-                            <i class="fa fa-user-friends fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <p class="mb-2 text-primary">Total Pelanggan</p>
-                                <h6 class="mb-0"></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Sale & Revenue End -->
-
-             <!-- Recent Sales Start -->
              <div class="container-fluid pt-4 px-4">
                 <div class="bg-secondary text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h6 class="mb-0">Data Pembelian</h6>
-                        <a href="">Lihat Semua</a>
+                        <h2 class="mb-0">Data Pembelian</h2>
                     </div>
                     <div class="table-responsive">
                         <table class="table text-start align-middle table-bordered table-hover mb-0">
                             <thead>
                                 <tr class="text-white">
                                     <th scope="col">No</th>
+                                    <th scope="col">Timestamp</th>
                                     <th  scope="col">Nama</th>
                                     <th  scope="col">Email</th>
-                                    <th  scope="col">Alamat</th>
                                     <th  scope="col">Pesan</th>
                                     <th scope="col">Nama Produk</th>
                                     <th scope="col">Jumlah</th>
                                     <th scope="col">Total Harga</th>
-                                    <th scope="col">Timestamp</th>
-                                    <th scope="col">Foto Bukti Transfer</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($items as $id => $pc)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $pc['timestamp'] }}</td>
                                         <td>{{ $pc['Nama'] }}</td>
                                         <td>{{ $pc['userEmail'] }}</td>
-                                        <td>{{ $pc['Alamat'] }}</td>
                                         <td>{{ $pc['Pesan'] }}</td>
                                         <td>
                                             @for ($i = 0; $i < count($pc); $i++)
@@ -130,7 +81,7 @@
                                                     {{ $pc['namaproduct_' . $i] }}
                                                     @if ($i < count($pc) - 1)
 
-                                                    ,
+                                                    -
                                                     @endif
                                                 @endif
                                             @endfor
@@ -140,22 +91,12 @@
                                                 @if (isset($pc['quantity_' . $i]))
                                                     {{ $pc['quantity_' . $i] }}
                                                     @if ($i < count($pc) - 1)
-                                                        ,
+                                                        -
                                                     @endif
                                                 @endif
                                             @endfor
                                         </td>
                                         <td>{{ $pc['totalHarga'] }}</td>
-                                        <td>{{ $pc['timestamp'] }}</td>
-                                        <td>
-                                            @if(isset($pc['imageUrl'])) <!-- Pastikan data imageUrl sudah ada -->
-                                                <img src="{{ $pc['imageUrl'] }}" alt="Foto" style="width: 100px; height: 100px;">
-                                            @else
-                                                <p>No Image</p>
-                                            @endif
-                                        </td>
-
-
                                     </tr>
                                 @endforeach
                             </tbody>

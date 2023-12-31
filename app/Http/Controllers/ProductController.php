@@ -38,7 +38,7 @@ class ProductController extends Controller
 
     // Mendapatkan URL gambar dari Firebase Storage untuk setiap produk
     foreach ($products as $productId => $product) {
-        $gambarName = $product['gambar']; // Sesuaikan dengan kunci yang benar
+        $gambarName = $product['gambar'];
 
         // Mendapatkan referensi file gambar di Firebase Storage
         $firebaseStorage = (new Factory)
@@ -46,7 +46,7 @@ class ProductController extends Controller
             ->createStorage();
 
         $bucket = $firebaseStorage->getBucket();
-        $imageRef = $bucket->object("images/{$gambarName}.jpg"); // Sesuaikan dengan lokasi penyimpanan gambar
+        $imageRef = $bucket->object("images/{$gambarName}.jpg");
 
         // Mendapatkan URL download untuk gambar tersebut
         $downloadUrl = $imageRef->signedUrl(new \DateTime('tomorrow'));
@@ -152,17 +152,13 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        // $productcategories = ProductCategory::find($id);
         $this->connect()->getReference('Product/' . $id)->remove();
         return back();
     }
 
     public function getProduct(Request $request)
 {
-    // // $product = Product::select(['product_code', 'image','name','selling_price','purchase_price','stock','category_id'])->get();
-    // $product = Product::all();
 
-    // return Response::json($product);
 }
 
 
@@ -171,16 +167,7 @@ class ProductController extends Controller
 
     public function exportExcel()
     {
-    // return Excel::download(new ProductExport, 'product.xlsx');
-    // }
 
-    // public function exportPdf()
-    // {
-    //     $product = Product::all();
-
-    //     $pdf = PDF::loadView('Product.export_pdf', compact('product'));
-
-    //     return $pdf->download('product.pdf');
     }
 
 

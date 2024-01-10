@@ -22,7 +22,7 @@
                     <a href="{{route('Product.index')}}" class="nav-item nav-link"><i class="fa fa-shopping-cart me-2"></i>Daftar Produk</a>
                     <a href="{{route('customer.index')}}" class="nav-item nav-link"><i class="fa fa-user-friends me-2"></i>Daftar Pelanggan</a>
                     {{-- <a href="{{ route('transaction.create', AppHelper::transaction_code())}}" class="nav-item nav-link"><i class="fa fa-cash-register me-2"></i>Transaksi</a> --}}
-                    <a href="{{route('transaction.index')}}" class="nav-item nav-link active"><i class="fa fa-chart-bar me-2"></i>Data Pembayaran</a>
+                    <a href="{{route('transaction.index')}}" class="nav-item nav-link active"><i class="fa fa-chart-bar me-2"></i>Data Pembayaran</a>------
                     <a href="{{ route('logout') }}" class="nav-item nav-link"><i class="fa fa-sign-out-alt me-2"
                      onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">

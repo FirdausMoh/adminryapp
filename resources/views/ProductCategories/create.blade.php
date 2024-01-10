@@ -3,10 +3,10 @@
 <div class="container-fluid position-relative d-flex p-0">
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
-        <nav class="navbar bg-secondary navbar-dark">
+        <nav class="navbar bg-navbar-">
             <div class="d-flex align-items-center ms-4 mb-4">
                 <div class="position-relative">
-                    <img class="" src="{{ Vite::asset('resources/images/LOGO.png') }}" alt="" style="width: 180px; height: 130px;">
+                    <img class="" src="{{ Vite::asset('resources/images/JAAA.png') }}" alt="" style="width: 210px; height: 190px;">
                 </div>
             </div>
             <div class="navbar-nav w-100">
@@ -33,9 +33,9 @@
 
 
     <div class="content">
-        <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+        <nav class="navbar navbar-expand bg- navbar- sticky-top px-4 py-0" style="background-color: #01807e">
             <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
-                <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+                <h2 class="text- mb-0"><i class="fa fa-user-edit"></i></h2>
             </a>
             <a href="#" class="sidebar-toggler flex-shrink-0">
                 <i class="fa fa-bars"></i>
@@ -51,18 +51,18 @@
         </nav>
         {{-- Title + Button  --}}
         <div class="d-flex align-items-center justify-content-between mb-4">
-            <h4 class="ms-4 mt-4">Tambahkan Kategori Produk</h4>
+            <h4 class="ms-4 mt-4" style="color: rgb(0, 0, 0)">Tambahkan Kategori Produk</h4>
         </div>
         {{-- End Title + Button --}}
 
         <div class="container-fluid pt-4 px-4">
-            <div class="bg-secondary rounded p-4">
+            <div class="bg- rounded p-4">
                 <form action="{{route('ProductCategories.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label for="name" class="form-label">Kategori Produk</label>
-                            <input type="text" class="form-control @error('namakategori') is-invalid @enderror" name="namakategori" id="namakategori" value="{{ old('namakategori') }}" placeholder="Masukan Kategori Produk">
+                            <input style="background-color: #ededed"  type="text" class="form-control @error('namakategori') is-invalid @enderror" name="namakategori" id="namakategori" value="{{ old('namakategori') }}" placeholder="Masukan Kategori Produk">
                             @error('namakategori')
                             <div class="text-danger"><small>{{ $message }}</small></div>
                         @enderror

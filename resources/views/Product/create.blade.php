@@ -3,10 +3,10 @@
 <div class="container-fluid position-relative d-flex p-0">
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
-        <nav class="navbar bg-secondary navbar-dark">
+        <nav class="navbar bg-navbar-dark">
             <div class="d-flex align-items-center ms-4 mb-4">
                 <div class="position-relative">
-                    <img class="" src="{{ Vite::asset('resources/images/LOGO.png') }}" alt="" style="width: 180px; height: 130px;">
+                    <img class="" src="{{ Vite::asset('resources/images/JAAA.png') }}" alt="" style="width: 210px; height: 190px;">
                 </div>
             </div>
             <div class="navbar-nav w-100">
@@ -33,7 +33,7 @@
 
 
     <div class="content">
-        <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+        <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0" >
             <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
                 <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
             </a>
@@ -51,25 +51,25 @@
         </nav>
         {{-- Title + Button  --}}
         <div class="d-flex align-items-center justify-content-between mb-4">
-            <h4 class="ms-4 mt-4">Tambahkan Produk</h4>
+            <h4 class="ms-4 mt-4 text-dark">Tambahkan Produk</h4>
         </div>
         {{-- End Title + Button --}}
 
         <div class="container-fluid pt-4 px-4">
-            <div class="bg-secondary rounded p-4">
+            <div class="bg- rounded p-4" style="background-color: #ededed">
                 <form action="{{route('Product.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="row">
-                        <div class="col-md-12 mb-3">
-                            <label for="product_code" class="form-label">Kode Produk</label>
-                            <input type="text" class="form-control  @error('product_code') is-invalid @enderror" name="product_code" id="product_code" value="{{ old('product_code') }}" placeholder="Masukan Kode Produk">
+                    <div class="row" >
+                        <div class="col-md-12 mb-3" >
+                            <label for="product_code" class="form-label" >Kode Produk</label>
+                            <input type="text" class="form-control  @error('product_code') is-invalid @enderror" name="product_code" id="product_code" value="{{ old('product_code') }}" placeholder="Masukan Kode Produk" style="background-color:  #ededed">
                             @error('product_code')
                             <div class="text-danger"><small>{{ $message }}</small></div>
                         @enderror
                         </div>
                         <div class="col-md-12 mb-3">
-                            <label for="name" class="form-label">Nama Produk</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="namaproduct" id="namaproduct" value="{{ old('name') }}" placeholder="Masukan Nama Produk">
+                            <label for="name" class="form-label" >Nama Produk</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="namaproduct" id="namaproduct" value="{{ old('name') }}" placeholder="Masukan Nama Produk" style="background-color:  #ededed">
                             @error('name')
                             <div class="text-danger"><small>{{ $message }}</small></div>
                         @enderror
@@ -77,27 +77,27 @@
                         <div class="col-md-12 mb-3">
                             <label for="kategori" class="form-label">Kategori Produk <br/>
                         </label>
-                        <select class="form-control form-select-sm" aria-label="Small select example" style="width: 90%" id="kategoriproduct" name="kategoriproduct">
+                        <select class="form-control form-select-sm" aria-label="Small select example" style="width: 90%" id="kategoriproduct" name="kategoriproduct" style="background-color:  #ededed">
                             <option selected>Pilih Kategori Produk</option>
                             @foreach($productCategories as $categoryId => $category)
-                                <option value="{{ $categoryId }}">{{ $category['namakategori'] }}</option>
+                                <option value="{{ $categoryId }}">{{ $category['namakategori'] }} </option>
                             @endforeach
                         </select>
                         </div>
                         <div class="col-md-12 mb-3">
                             <label for="harga" class="form-label">Harga</label>
-                            <input type="text" class="form-control @error('harga') is-invalid @enderror" name="harga" id="harga" value="{{ old('harga') }}" placeholder="Masukan harga Produk">
+                            <input type="text" class="form-control @error('harga') is-invalid @enderror" name="harga" id="harga" value="{{ old('harga') }}" placeholder="Masukan harga Produk" style="background-color:  #ededed">
                             @error('harga')
                             <div class="text-danger"><small>{{ $message }}</small></div>
                         @enderror
                         </div>
                         <div class="col-md-12 mb-3">
                             <label for="image" class="form-label">Gambar Produk</label>
-                            <input type="file" class="form-control" name="gambar" id="gambar" style="background-color: rgb(0, 0, 0)">
+                            <input type="file" class="form-control" name="gambar" id="gambar" style="background-color:  #ededed">
                         </div>
                         <div class="col-md-12 mb-3">
-                            <label for="image" class="form-label">Deskripsi Produk</label>
-                            <textarea type="file" class="form-control" name="deskripsiproduct" id="deskripsiproduct" style="background-color: rgb(0, 0, 0)"></textarea>
+                            <label for="image" class="form-label ">Deskripsi Produk</label>
+                            <textarea type="file" class="form-control" name="deskripsiproduct" id="deskripsiproduct" style="background-color:  #ededed"></textarea>
                         </div>
                         <div class="col-md-6 d-grid">
                             <a href="{{route('Product.index')}}" class="btn btn-danger btn-lg mt-3">Batal Tambahkkan Produk</a>
